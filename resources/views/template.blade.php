@@ -12,8 +12,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form>
-
-</form>
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@if (isset($notify))
+    <div class="alert alert-success">
+        {{ $notify }}
+    </div>
+@endif
+<div class="container">
+    <div class="languages">
+        <a href="/en">English</a>
+        <a href="/fr">Français</a>
+    </div>
+    @yield('content')
+</div>
 </body>
 </html>

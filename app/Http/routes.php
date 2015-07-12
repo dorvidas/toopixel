@@ -11,4 +11,18 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
+
+Route::get('/', function () {
+    return redirect(config('app.locale'));
+});
+Route::get('{locale}',
+    [
+        'middleware' => 'lang',
+        'uses' => 'PagesController@index'
+    ]);
+
+Route::post('{locale}',
+    [
+        'middleware' => 'lang',
+        'uses' => 'PagesController@send'
+    ]);
